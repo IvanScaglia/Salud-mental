@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Interactivo de Seguimiento</title>
+    <title>Mapa Interactivo de Seguimiento - GOPA</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
@@ -32,14 +32,17 @@
         .stat { font-size: 14px; color: #2c3e50; font-weight: bold; }
         .btn-toggle-route { background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-size: 12px; font-weight: bold; }
         .btn-toggle-route:hover { background: #2980b9; }
+
+        #sync-status { font-size: 10px; color: #7f8c8d; margin-left: 10px; }
     </style>
 </head>
 <body>
 
     <div class="header-panel">
-        <div class="stat">Casos Únicos: <span id="total-casos">0</span></div>
-        <div class="stat">Judicializados: <span id="total-judicial" style="color:#e74c3c">0</span></div>
+        <div class="stat">Casos Únicos: <span id="total-casos">Cargando...</span></div>
+        <div class="stat">Judicializados: <span id="total-judicial" style="color:#e74c3c">-</span></div>
         <button class="btn-toggle-route" id="toggle-route">Ocultar Recorrido</button>
+        <div id="sync-status">Sincronizando con Drive...</div>
     </div>
 
     <div id="map"></div>
@@ -49,16 +52,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <script>
-        /**
-         * CONFIGURACIÓN DE GOOGLE DRIVE
-         * 1. En tu Google Sheet, ve a Archivo > Compartir > Compartir con otros.
-         * 2. Cambia el acceso general a "Cualquier persona con el enlace" (lector).
-         * 3. Copia el ID de la URL (entre /d/ y /edit) y pégalo aquí abajo.
-         */
-        const SHEET_ID = 'TU_ID_DE_GOOGLE_SHEET_AQUI'; 
-        const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+        // CONFIGURACIÓN DE DRIVE
+        const SHEET_ID = '1oI8ZevKICSAxVsmKNN8f1J03zjPJvvyHYplqpNEWFqg'; 
+        const GID = '512987844'; // Pestaña 'Casos Unicos'
+        const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
 
         const map = L.map('map').setView([-34.6037, -58.3816], 12);
+        
+        // Mapa base CartoDB (Limpio y profesional)
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             attribution: '© OpenStreetMap contributors © CARTO'
         }).addTo(map);
@@ -85,18 +86,14 @@
         }
 
         function generarContenido(p) {
-            let fotoHtml = '';
-            if (p.foto && p.foto !== '' && p.foto !== 'null') {
-                fotoHtml = `<img src="${p.foto}" alt="Foto de ${p.nombre}" class="foto-perfil">`;
-            } else {
-                fotoHtml = `<div class="foto-perfil">📷 Sin imagen disponible</div>`;
-            }
-
+            let fotoHtml = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div class="foto-perfil">📷 Sin imagen</div>`;
+            
             let informeHtml = '';
-            if (p.informe && p.informe !== 'S/D' && p.informe !== '' && p.informe !== 'null') {
+            if (p.informe && p.informe !== 'S/D' && p.informe !== '') {
+                const link = p.informe.startsWith('http') ? p.informe : `https://${p.informe}`;
                 informeHtml = `
                     <div style="margin-top:15px; padding-top:10px; border-top:1px solid #eee; text-align:center;">
-                        <a href="${p.informe}" target="_blank" style="font-size:12px; color:#3498db; text-decoration:none; font-weight:bold; display:block; margin-bottom:5px;">
+                        <a href="${link}" target="_blank" style="font-size:12px; color:#3498db; text-decoration:none; font-weight:bold; display:block; margin-bottom:5px;">
                             📄 VER INFORME ASOCIADO
                         </a>
                         <div style="font-size:10px; color:#7f8c8d; word-break:break-all;">${p.informe}</div>
@@ -104,96 +101,89 @@
                 `;
             }
 
-            const saludText = p.salud ? String(p.salud) : 'S/D';
-
             return `
                 <div class="info-card">
                     ${fotoHtml}
-                    <h2>${p.nombre || 'Sin nombre'}</h2>
+                    <h2>${p.nombre}</h2>
                     <table>
-                        <tr><th>DNI</th><td>${p.dni || 'S/D'}</td></tr>
-                        <tr><th>DIRECCIÓN</th><td>${p.ubicacion || 'S/D'}</td></tr>
-                        <tr><th>ACTUALIZACIÓN</th><td>${p.fecha || 'Sin fecha'}</td></tr>
-                        <tr><th>ESTADO</th><td><span class="badge ${getEstadoColor(p.estado)}">${p.estado || 'S/D'}</span></td></tr>
-                        <tr><th>JUDICIAL</th><td><span class="badge ${getJudicialColor(p.judicial)}">${p.judicial || 'S/D'}</span></td></tr>
-                        <tr><th>DX / SALUD</th><td><span class="badge bg-default" title="${saludText}">${saludText.length > 35 ? saludText.substring(0,35) + '...' : saludText}</span></td></tr>
+                        <tr><th>DNI</th><td>${p.dni}</td></tr>
+                        <tr><th>DIRECCIÓN</th><td>${p.ubicacion}</td></tr>
+                        <tr><th>ACTUALIZACIÓN</th><td>${p.fecha}</td></tr>
+                        <tr><th>ESTADO</th><td><span class="badge ${getEstadoColor(p.estado)}">${p.estado}</span></td></tr>
+                        <tr><th>JUDICIAL</th><td><span class="badge ${getJudicialColor(p.judicial)}">${p.judicial}</span></td></tr>
+                        <tr><th>DX / SALUD</th><td><span class="badge bg-default" title="${p.salud}">${p.salud.length > 35 ? p.salud.substring(0,35) + '...' : p.salud}</span></td></tr>
                     </table>
                     ${informeHtml}
                 </div>
             `;
         }
 
-        async function loadData() {
+        function renderData(data) {
+            markers.clearLayers();
+            routeCoords = [];
+            let count = 0;
+            let judicialCount = 0;
+
+            data.forEach((row) => {
+                const nombre = `${row['APELLIDO'] || ''} ${row['NOMBRE'] || ''}`.trim();
+                if (!nombre || nombre === 'undefined undefined') return;
+
+                count++;
+                if (String(row['SITUACIÓN JUDICIAL']).toLowerCase().includes('judicializado')) judicialCount++;
+
+                // Como el Excel no tiene coordenadas, ponemos los puntos cerca del Obelisco con un poco de azar 
+                // para que se distribuyan en el mapa hasta que agregues columnas de Latitud/Longitud al Excel.
+                let lat = -34.6037 + (Math.random() * 0.08 - 0.04);
+                let lng = -58.3816 + (Math.random() * 0.08 - 0.04);
+
+                const p = {
+                    nombre: nombre,
+                    dni: row['DNI'] || 'S/D',
+                    ubicacion: row['UBICACIÓN ÚLTIMO CONTACTO'] || 'S/D',
+                    fecha: row['Fecha de actualización '] || 'S/D',
+                    judicial: row['SITUACIÓN JUDICIAL'] || 'S/D',
+                    salud: row['DX PRESUNTIVO'] || 'S/D',
+                    estado: row['ESTADO'] || 'S/D',
+                    informe: row['INFORME'] || '',
+                    foto: row['FOTO'] || null,
+                    coords: [lat, lng]
+                };
+
+                const marker = L.marker(p.coords).bindPopup(generarContenido(p));
+                markers.addLayer(marker);
+                routeCoords.push(p.coords);
+            });
+
+            map.addLayer(markers);
+            document.getElementById('total-casos').innerText = count;
+            document.getElementById('total-judicial').innerText = judicialCount;
+
+            if (routePolyline) map.removeLayer(routePolyline);
+            routePolyline = L.polyline(routeCoords, {
+                color: '#3498db', weight: 3, opacity: 0.5, dashArray: '10, 10'
+            }).addTo(map);
+        }
+
+        async function loadFromDrive() {
             try {
                 const response = await fetch(CSV_URL);
-                if (!response.ok) throw new Error("No se pudo obtener el archivo");
                 const csvText = await response.text();
-                
                 Papa.parse(csvText, {
                     header: true,
                     skipEmptyLines: true,
                     complete: function(results) {
                         renderData(results.data);
-                    },
-                    error: function(err) {
-                        console.error("Error al parsear CSV:", err);
+                        document.getElementById('sync-status').innerText = 'Datos actualizados desde Drive ✓';
                     }
                 });
             } catch (error) {
-                console.error("Error:", error);
-                if (SHEET_ID === 'TU_ID_DE_GOOGLE_SHEET_AQUI') {
-                    console.log("Esperando configuración de SHEET_ID...");
-                } else {
-                    alert("Error al cargar datos. Verifica que el Google Sheet esté compartido como 'Cualquier persona con el enlace'.");
-                }
+                console.error("Error cargando Drive:", error);
+                document.getElementById('sync-status').innerText = 'Error al conectar con Drive';
             }
         }
 
-        function renderData(personas) {
-            markers.clearLayers();
-            routeCoords = [];
-            if (routePolyline) map.removeLayer(routePolyline);
-
-            let totalCasos = 0;
-            let totalJudicial = 0;
-
-            personas.forEach(p => {
-                let lat, lng;
-                
-                // Soporte para lat/lng en columnas separadas o columna coords
-                if (p.lat && p.lng) {
-                    lat = parseFloat(p.lat);
-                    lng = parseFloat(p.lng);
-                } else if (p.coords) {
-                    const c = String(p.coords).replace(/[\[\]]/g, '').split(',');
-                    lat = parseFloat(c[0]);
-                    lng = parseFloat(c[1]);
-                }
-
-                if (!isNaN(lat) && !isNaN(lng)) {
-                    const marker = L.marker([lat, lng]).bindPopup(generarContenido(p));
-                    markers.addLayer(marker);
-                    routeCoords.push([lat, lng]);
-                    
-                    totalCasos++;
-                    if (p.judicial && !String(p.judicial).toLowerCase().includes('sin') && p.judicial !== 'S/D') {
-                        totalJudicial++;
-                    }
-                }
-            });
-
-            map.addLayer(markers);
-            
-            document.getElementById('total-casos').innerText = totalCasos;
-            document.getElementById('total-judicial').innerText = totalJudicial;
-
-            if (routeCoords.length > 0) {
-                routePolyline = L.polyline(routeCoords, {
-                    color: '#3498db', weight: 3, opacity: 0.7, dashArray: '10, 10'
-                }).addTo(map);
-                map.fitBounds(markers.getBounds(), { padding: [50, 50] });
-            }
-        }
+        // Ejecutar carga inicial
+        loadFromDrive();
 
         const btnToggle = document.getElementById('toggle-route');
         btnToggle.addEventListener('click', function() {
@@ -207,8 +197,6 @@
                 this.style.background = '#3498db';
             }
         });
-
-        loadData();
     </script>
 </body>
 </html>
