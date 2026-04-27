@@ -8,8 +8,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Ariel Edgardo Allaca - Av. del Libertador y Agote.docx",
     "coords": [
-      -34.61920619058337,
-      -58.367554439462836
+      -34.6126886722906,
+      -58.39635690934486
     ]
   },
   {
@@ -21,8 +21,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Fernando Amarilla 2026.docx",
     "coords": [
-      -34.62264322507276,
-      -58.38480871017278
+      -34.5839,
+      -58.3932
     ]
   },
   {
@@ -34,8 +34,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "",
     "coords": [
-      -34.62146006512574,
-      -58.377477990736445
+      -34.5778,
+      -58.4071
     ]
   },
   {
@@ -47,8 +47,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Paula Gabriela Beristain - Av. Belgrano 1783",
     "coords": [
-      -34.6119860476002,
-      -58.38174620453983
+      -34.609,
+      -58.4057
     ]
   },
   {
@@ -60,8 +60,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "",
     "coords": [
-      -34.5683038,
-      -58.4926901
+      -34.6226,
+      -58.3974
     ]
   },
   {
@@ -73,8 +73,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Diego Cantiano - Juncal 1800.docx",
     "coords": [
-      -34.5939069,
-      -58.392925
+      -34.5572,
+      -58.4703
     ]
   },
   {
@@ -86,8 +86,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Margarita Mónica Chalian  - Av. Rivadavia 8350",
     "coords": [
-      -34.6338369,
-      -58.4812237
+      -34.5933,
+      -58.3915
     ]
   },
   {
@@ -99,8 +99,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Graciela Chirino - Blanco Encalada 2500",
     "coords": [
-      -34.595495961830565,
-      -58.37008427768548
+      -34.6311,
+      -58.5032
     ]
   },
   {
@@ -112,8 +112,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Matías Eduardo Colomba - California y Hornos",
     "coords": [
-      -34.60138044017414,
-      -58.3643850167216
+      -34.5638,
+      -58.4629
     ]
   },
   {
@@ -125,8 +125,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Magali Davalos - Combate de los Pozos y Cochabambas",
     "coords": [
-      -34.610303197059,
-      -58.37698603234865
+      -34.6512,
+      -58.3818
     ]
   },
   {
@@ -138,8 +138,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Ferraro, Ulises Federico. Av. General Las Heras y Galileo.docxt",
     "coords": [
-      -34.6171788852646,
-      -58.37030803124277
+      -34.5812,
+      -58.4102
     ]
   },
   {
@@ -151,8 +151,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "-",
     "coords": [
-      -34.6344518,
-      -58.4781406
+      -34.638,
+      -58.4826
     ]
   },
   {
@@ -164,8 +164,8 @@ const personas = [
     "estado": "FALLECIMIENTO",
     "informe": "Federico Antonio Jallaguier - Av. Rivadavia 1777.docx",
     "coords": [
-      -34.58882494923927,
-      -58.38963280182411
+      -34.6183,
+      -58.3989
     ]
   },
   {
@@ -177,8 +177,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Maria Esther Mansilla - Tagle 2643 .docx",
     "coords": [
-      -34.5809183,
-      -58.4085102
+      -34.5736,
+      -58.4078
     ]
   },
   {
@@ -190,8 +190,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "María Fredezfinda Molina - San Luis 3327",
     "coords": [
-      -34.5994746,
-      -58.4122594
+      -34.5988,
+      -58.4105
     ]
   },
   {
@@ -203,8 +203,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Alberto Piccoli - Ayacucho 740",
     "coords": [
-      -34.59622,
-      -58.4082983
+      -34.595,
+      -58.3849
     ]
   },
   {
@@ -216,8 +216,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Guillermo Reyes - Pi y Margal y Almirante Brown",
     "coords": [
-      -34.6281137,
-      -58.3655686
+      -34.6367,
+      -58.3619
     ]
   },
   {
@@ -229,8 +229,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "SCOVOLI NAHUEL OMAR. COMBATE DE LOS POZOS 1285.docx",
     "coords": [
-      -34.6193856,
-      -58.3932139
+      -34.6171,
+      -58.3924
     ]
   },
   {
@@ -242,8 +242,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "",
     "coords": [
-      -34.5742749,
-      -58.4370023
+      -34.5594,
+      -58.4562
     ]
   },
   {
@@ -255,8 +255,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "OSCAR SILVERA. Santa Fe 3200.docx",
     "coords": [
-      -34.5892836,
-      -58.4098105
+      -34.5872,
+      -58.4121
     ]
   },
   {
@@ -268,8 +268,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "",
     "coords": [
-      -34.60234019343456,
-      -58.384339264176674
+      -34.7083,
+      -58.4639
     ]
   },
   {
@@ -281,8 +281,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Walter Eber Leiva - Plaza Houssay",
     "coords": [
-      -34.5991181,
-      -58.3980653
+      -34.5994,
+      -58.3976
     ]
   },
   {
@@ -294,8 +294,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Ernesto Correa - Perú 1050.docx",
     "coords": [
-      -34.615128981719174,
-      -58.36928967348353
+      -34.6178,
+      -58.3739
     ]
   },
   {
@@ -307,8 +307,21 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Maria Cristina Di Piano Dolagaray - Av. San Juan 2750",
     "coords": [
-      -34.59412526115978,
-      -58.391320720308265
+      -34.6229,
+      -58.3936
+    ]
+  },
+  {
+    "nombre": "MOIRA JUANA GUTIERREZ",
+    "dni": "26747531",
+    "ubicacion": "",
+    "comuna": "5",
+    "judicial": "Judicializado",
+    "estado": "PERDIDA DE PARADERO",
+    "informe": "Moira Juana Gutierrez - Av. La Plata 323",
+    "coords": [
+      -34.5622,
+      -58.4521
     ]
   },
   {
@@ -320,8 +333,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "LOPEZ DE GARIBALDI, EMMA ROSALIA. San Pedro 3782.docx",
     "coords": [
-      -34.641811,
-      -58.4721104
+      -34.6508,
+      -58.4879
     ]
   },
   {
@@ -333,8 +346,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Ocaranza Matias. Av. Pueyrredon y Av. Santa Fe.docx",
     "coords": [
-      -34.59661235294522,
-      -58.397477237488225
+      -34.5949,
+      -58.406
     ]
   },
   {
@@ -346,8 +359,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Fernando Pelaez - Santa Fe y Ayacucho",
     "coords": [
-      -34.595686,
-      -58.3972726
+      -34.5904,
+      -58.3956
     ]
   },
   {
@@ -359,8 +372,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Fernando Carlos Repetto - Balbin y Monroe",
     "coords": [
-      -34.61481887186938,
-      -58.40044024072727
+      -34.5559,
+      -58.4874
     ]
   },
   {
@@ -372,8 +385,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "",
     "coords": [
-      -34.620566449495655,
-      -58.38614730776083
+      -34.573,
+      -58.4106
     ]
   },
   {
@@ -385,8 +398,8 @@ const personas = [
     "estado": "FALLECIMIENTO",
     "informe": "Ramón Salvatierra - Dr. Eleodoro Lobos y Av. Díaz Vélez.docx",
     "coords": [
-      -34.604162665336496,
-      -58.36541937994839
+      -34.6094,
+      -58.4129
     ]
   },
   {
@@ -398,8 +411,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Ernesto Daniel Mustillo - Av. Rivadavia y Pasco.docx",
     "coords": [
-      -34.5946743,
-      -58.4019353
+      -34.5853,
+      -58.4101
     ]
   },
   {
@@ -411,8 +424,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Guillermo Manuel Risoluto - Av. Fernandez de la Cruz 1745.docx",
     "coords": [
-      -34.6535327,
-      -58.435274
+      -34.6651,
+      -58.4523
     ]
   },
   {
@@ -424,8 +437,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Ruben Hector Romano - Rómulo Neon 2900",
     "coords": [
-      -34.5624613,
-      -58.4771012
+      -34.5566,
+      -58.4789
     ]
   },
   {
@@ -437,8 +450,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Ángel Sánchez - Luna y Uspallata",
     "coords": [
-      -34.58981729021428,
-      -58.36623826721479
+      -34.6478,
+      -58.3824
     ]
   },
   {
@@ -450,8 +463,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Szmigielskyj Ladislao Alejandro - Pacheco de Melo y Austria",
     "coords": [
-      -34.604313335248,
-      -58.375966554127906
+      -34.5888,
+      -58.3979
     ]
   },
   {
@@ -463,8 +476,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Pablo Fantacone - Combate de los pozos 1280.docx",
     "coords": [
-      -34.60514378336408,
-      -58.38403289644577
+      -34.6172,
+      -58.3925
     ]
   },
   {
@@ -476,8 +489,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "FIERRE ROSARIO OLGA. CNEL DIAZ Y PEÑA.docx",
     "coords": [
-      -34.59952767195792,
-      -58.391461423182484
+      -34.5901,
+      -58.4024
     ]
   },
   {
@@ -489,8 +502,21 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Fernando Jorge Jans - Av. Santa Fe y Uriarte",
     "coords": [
-      -34.61262189210814,
-      -58.37958876503756
+      -34.5864,
+      -58.431
+    ]
+  },
+  {
+    "nombre": "JAMSHID TAVANGARI",
+    "dni": "18720748",
+    "ubicacion": "",
+    "comuna": "1",
+    "judicial": "Judicializado",
+    "estado": "SEGUIMIENTO",
+    "informe": "https://docs.google.com/document/d/1iCMUw2gBrOhnxbjmtbolXjISzO7-aYmX/edit",
+    "coords": [
+      -34.6012,
+      -58.3819
     ]
   },
   {
@@ -502,8 +528,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Ariel Úbeda - Av. Montes de Oca 1461.docx",
     "coords": [
-      -34.6443685,
-      -58.3737308
+      -34.6402,
+      -58.3698
     ]
   },
   {
@@ -515,8 +541,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "",
     "coords": [
-      -34.6255024,
-      -58.4319297
+      -34.6286,
+      -58.4389
     ]
   },
   {
@@ -528,8 +554,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "VEGLIENZONE, SERGIO MATIAS. Cerviño 3356",
     "coords": [
-      -34.60424533141232,
-      -58.38033755707801
+      -34.5859,
+      -58.4104
     ]
   },
   {
@@ -541,8 +567,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Vera, Maria Teresa. Isabel la Católica y Uspallata .docx",
     "coords": [
-      -34.629107,
-      -58.3705288
+      -34.6441,
+      -58.3851
     ]
   },
   {
@@ -554,8 +580,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Raúl Eduardo González - Av. Entre Ríos y Brasil.docx",
     "coords": [
-      -34.58997376967462,
-      -58.39540172028395
+      -34.6216,
+      -58.3958
     ]
   },
   {
@@ -567,8 +593,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Pedro Leizagarra - Av. Pueyrredón 1640 (Htal Alemán)",
     "coords": [
-      -34.5949245,
-      -58.4031408
+      -34.5926,
+      -58.4012
     ]
   },
   {
@@ -580,8 +606,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "David (NN) - Alberdi 344",
     "coords": [
-      -34.6242999,
-      -58.4458161
+      -34.6301,
+      -58.4288
     ]
   },
   {
@@ -593,8 +619,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Luciana Palacio Diodati - Av. Rivadavia y Balcarce",
     "coords": [
-      -34.6449905,
-      -58.4600651
+      -34.6342,
+      -58.4559
     ]
   },
   {
@@ -606,8 +632,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Azcurra^LJ Martha Mabel  Carta: 1574068.docx",
     "coords": [
-      -34.6193856,
-      -58.3932139
+      -34.6169,
+      -58.3922
     ]
   },
   {
@@ -619,8 +645,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Eric Benavides - Vieytes 1173",
     "coords": [
-      -34.6085897,
-      -58.3792061
+      -34.6249,
+      -58.3712
     ]
   },
   {
@@ -632,8 +658,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Andres NN - Costa Rica 6099.docx",
     "coords": [
-      -34.60939676078912,
-      -58.383899546945614
+      -34.5806,
+      -58.4392
     ]
   },
   {
@@ -645,8 +671,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "CONSTANTINO, CARLOS ALBERTO. MARCELO T DE ALVEAR 1840.docx",
     "coords": [
-      -34.5973656,
-      -58.3938115
+      -34.5921,
+      -58.3872
     ]
   },
   {
@@ -658,8 +684,21 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Gallegos Martín - Av. pueyrredón y Av. Cordoba",
     "coords": [
-      -34.59222481417919,
-      -58.39992505370483
+      -34.5962,
+      -58.4052
+    ]
+  },
+  {
+    "nombre": "SUSANA ELSA JOVER",
+    "dni": "20426449",
+    "ubicacion": "",
+    "comuna": "2",
+    "judicial": "Sin judicializar",
+    "estado": "SEGUIMIENTO",
+    "informe": "",
+    "coords": [
+      -34.5734,
+      -58.4398
     ]
   },
   {
@@ -671,8 +710,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "",
     "coords": [
-      -34.5644701,
-      -58.4410272
+      -34.5892,
+      -58.3928
     ]
   },
   {
@@ -684,8 +723,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Paola Soledad Schillaci - Pichincha 1890 .docx",
     "coords": [
-      -34.5891326,
-      -58.3906703
+      -34.5882,
+      -58.3899
     ]
   },
   {
@@ -697,8 +736,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Contreras Maria - Plaza Vicente Lopez",
     "coords": [
-      -34.5929981,
-      -58.3887104
+      -34.6247,
+      -58.371
     ]
   },
   {
@@ -710,8 +749,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Diego Cuevas Souto - Tacuarí 1670.docx",
     "coords": [
-      -34.6085897,
-      -58.3792061
+      -34.5509,
+      -58.4726
     ]
   },
   {
@@ -723,8 +762,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Maria Encinas - Vidal y Echeverria",
     "coords": [
-      -34.5652611,
-      -58.4596859
+      -34.6128,
+      -58.5254
     ]
   },
   {
@@ -736,8 +775,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "",
     "coords": [
-      -34.6124663,
-      -58.5275887
+      -34.6221,
+      -58.3971
     ]
   },
   {
@@ -749,8 +788,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Jazmin Isabel Lapuente - Combate de los Pozos 1280",
     "coords": [
-      -34.6261494,
-      -58.3910996
+      -34.5886,
+      -58.4109
     ]
   },
   {
@@ -762,8 +801,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Mingione, Ángel José.docx",
     "coords": [
-      -34.585428586123264,
-      -58.37210831193275
+      -34.5989,
+      -58.4194
     ]
   },
   {
@@ -775,8 +814,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "-",
     "coords": [
-      -34.59999152357731,
-      -58.38995967359167
+      -34.6036,
+      -58.3974
     ]
   },
   {
@@ -788,8 +827,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "",
     "coords": [
-      -34.5995121,
-      -58.3923459
+      -34.5969,
+      -58.3913
     ]
   },
   {
@@ -801,8 +840,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "",
     "coords": [
-      -34.5975323,
-      -58.3870263
+      -34.5951,
+      -58.4032
     ]
   },
   {
@@ -814,8 +853,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Nazareno Rubén Rodriguez - Av. Cordoba 2100, Plaza Houssay",
     "coords": [
-      -34.5880749,
-      -58.4063381
+      -34.596,
+      -58.4048
     ]
   },
   {
@@ -827,8 +866,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Miguel Ángel Rojas - Azcuénaga 1300.docx",
     "coords": [
-      -34.593497,
-      -58.399349
+      -34.6228,
+      -58.4012
     ]
   },
   {
@@ -840,8 +879,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Miguel Ángel Saiz - Pedro Bidegain 4300",
     "coords": [
-      -34.622553088122345,
-      -58.38662675497929
+      -34.6274,
+      -58.4428
     ]
   },
   {
@@ -853,8 +892,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Celia Marcela Solari - Guido 2620.docx",
     "coords": [
-      -34.5874955,
-      -58.3988009
+      -34.5852,
+      -58.4246
     ]
   },
   {
@@ -866,8 +905,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "",
     "coords": [
-      -34.6108281,
-      -58.4155501
+      -34.6244,
+      -58.4121
     ]
   },
   {
@@ -879,8 +918,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "ACOSTA ISAIAS. Presidente Ortiz 1835.docx",
     "coords": [
-      -34.5882937,
-      -58.3914031
+      -34.5856,
+      -58.3918
     ]
   },
   {
@@ -892,8 +931,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Maximiliano Alegre - Av. Diaz Velez y Ambrosetti",
     "coords": [
-      -34.5641411,
-      -58.4718644
+      -34.5617,
+      -58.4762
     ]
   },
   {
@@ -905,8 +944,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Nicolás Alberto Bagdadi - Av. Lacarra y San Pedro",
     "coords": [
-      -34.615781759382415,
-      -58.36257739419379
+      -34.6524,
+      -58.4886
     ]
   },
   {
@@ -918,8 +957,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Mailén Benavides - 15 de noviembre de 1889 nº 1545",
     "coords": [
-      -34.6320969,
-      -58.3929987
+      -34.6213,
+      -58.3984
     ]
   },
   {
@@ -931,8 +970,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Santiago Candal - Aráoz 2428.docx",
     "coords": [
-      -34.586411,
-      -58.4161907
+      -34.587,
+      -58.4231
     ]
   },
   {
@@ -944,8 +983,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Dora Del Valle Cardozo - Rivadavia 3702",
     "coords": [
-      -34.597172827024096,
-      -58.363920062492625
+      -34.6291,
+      -58.3876
     ]
   },
   {
@@ -957,8 +996,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Marcelo Cuello - ayacucho 985",
     "coords": [
-      -34.615109352159095,
-      -58.39629861555484
+      -34.5933,
+      -58.3878
     ]
   },
   {
@@ -970,8 +1009,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "",
     "coords": [
-      -34.5939635,
-      -58.388538
+      -34.5984,
+      -58.3916
     ]
   },
   {
@@ -983,8 +1022,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "",
     "coords": [
-      -34.58772500657057,
-      -58.382037394475766
+      -34.5739,
+      -58.4055
     ]
   },
   {
@@ -996,8 +1035,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Andres Robles - Guayaquil 300",
     "coords": [
-      -34.6201414,
-      -58.43288
+      -34.6192,
+      -58.4304
     ]
   },
   {
@@ -1009,8 +1048,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Palomeque Ana María -  Alberdi y Fonrouge",
     "coords": [
-      -34.61572895312466,
-      -58.36391226401472
+      -34.6901,
+      -58.4624
     ]
   },
   {
@@ -1022,8 +1061,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "PECI, DIEGO ALEJANDRO. Gral. Urquiza 609.docx",
     "coords": [
-      -34.6116345,
-      -58.4106763
+      -34.6181,
+      -58.3987
     ]
   },
   {
@@ -1035,8 +1074,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Walter Antonio Speght - Medrano y Sarmiento",
     "coords": [
-      -34.6046077,
-      -58.4212133
+      -34.6031,
+      -58.411
     ]
   },
   {
@@ -1048,8 +1087,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Julio Argentia Garcia - Av. Pueyrredón y Av. Córdoba",
     "coords": [
-      -34.6004477067024,
-      -58.3964133360441
+      -34.596000000000004,
+      -58.405
     ]
   },
   {
@@ -1061,8 +1100,8 @@ const personas = [
     "estado": "CERRADO",
     "informe": "",
     "coords": [
-      -34.6036189,
-      -58.4335729
+      -34.6355,
+      -58.5151
     ]
   },
   {
@@ -1074,8 +1113,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Margarita Pizzella - Sarmiento y Junín .docx",
     "coords": [
-      -34.62212160820997,
-      -58.39826220071788
+      -34.6022,
+      -58.4093
     ]
   },
   {
@@ -1087,8 +1126,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Aldo Walter Rouyet - Crespo 3544.docx",
     "coords": [
-      -34.6564804,
-      -58.4231556
+      -34.6038,
+      -58.4852
     ]
   },
   {
@@ -1100,8 +1139,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "María Isabel Sayago - Camarones 5887.docx",
     "coords": [
-      -34.610154022937174,
-      -58.36173794547058
+      -34.5704,
+      -58.4237
     ]
   },
   {
@@ -1113,8 +1152,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Jose Soler - Cordoba y Bonpland.docx",
     "coords": [
-      -34.59769721593081,
-      -58.36240848389041
+      -34.6586,
+      -58.3779
     ]
   },
   {
@@ -1126,8 +1165,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Guillermo Edgardo Franco - Av. Hipólito Yrigoyen 4350.docx",
     "coords": [
-      -34.610021124821934,
-      -58.39992268402182
+      -34.6319,
+      -58.4241
     ]
   },
   {
@@ -1139,8 +1178,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Ednaldo Da Silva - Tacuarí 1670.docx",
     "coords": [
-      -34.6085897,
-      -58.3792061
+      -34.624599999999994,
+      -58.3709
     ]
   },
   {
@@ -1152,8 +1191,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "NN Luis - Rocha y Azara .docx",
     "coords": [
-      -34.59485956355561,
-      -58.38845258913692
+      -34.6459,
+      -58.3678
     ]
   },
   {
@@ -1165,8 +1204,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Rosa Beatriz Martinez - Av. Córdoba 930 .docx",
     "coords": [
-      -34.5990977,
-      -58.3801862
+      -34.5994,
+      -58.3812
     ]
   },
   {
@@ -1178,8 +1217,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "-",
     "coords": [
-      -34.5915528827233,
-      -58.39045059418608
+      -34.6579,
+      -58.4768
     ]
   },
   {
@@ -1191,8 +1230,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "-",
     "coords": [
-      -34.58381169214386,
-      -58.38695784293608
+      -34.5613,
+      -58.4859
     ]
   },
   {
@@ -1204,8 +1243,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "BERNALES NESTOR ALBERTO.  Adolfo Alsina 1950",
     "coords": [
-      -34.6117024,
-      -58.3940249
+      -34.6099,
+      -58.3904
     ]
   },
   {
@@ -1217,8 +1256,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Yamila Belén Bourilhon - Combate de los Pozos 1280.docx",
     "coords": [
-      -34.60031912338111,
-      -58.378975815643635
+      -34.617,
+      -58.3923
     ]
   },
   {
@@ -1230,8 +1269,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Casandra Brieba - Combate de los Pozos y Cochabamba.docx",
     "coords": [
-      -34.61789437348263,
-      -58.3646473263268
+      -34.616899999999994,
+      -58.392199999999995
     ]
   },
   {
@@ -1243,8 +1282,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Nadia Villalba - Av. Asamblea y Av. Varela.docx",
     "coords": [
-      -34.621074401808116,
-      -58.39344044941253
+      -34.6502,
+      -58.4488
     ]
   },
   {
@@ -1256,8 +1295,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Juan Carlos Villanueva - Av. Caseros y Lavarden.docx",
     "coords": [
-      -34.6338229,
-      -58.3889082
+      -34.6369,
+      -58.3939
     ]
   },
   {
@@ -1269,8 +1308,8 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Guillermo Javier Fernandez - Brasil y Defensa.docx",
     "coords": [
-      -34.632962,
-      -58.3739636
+      -34.6289,
+      -58.3665
     ]
   },
   {
@@ -1282,8 +1321,21 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "",
     "coords": [
-      -34.6547647,
-      -58.5063319
+      -34.6695,
+      -58.4721
+    ]
+  },
+  {
+    "nombre": "ESMERALDA NN",
+    "dni": "",
+    "ubicacion": "",
+    "comuna": "",
+    "judicial": "",
+    "estado": "",
+    "informe": "",
+    "coords": [
+      -34.584241173899564,
+      -58.38531405740751
     ]
   },
   {
@@ -1295,8 +1347,8 @@ const personas = [
     "estado": "PERDIDA DE PARADERO",
     "informe": "Juan Reinaldo Flores - Combate de los Pozos 1200",
     "coords": [
-      -34.602443301983946,
-      -58.3693120759601
+      -34.6119,
+      -58.3734
     ]
   },
   {
@@ -1308,8 +1360,21 @@ const personas = [
     "estado": "RESUELTO",
     "informe": "Diana Giannattasio - Corrientes 2510",
     "coords": [
-      -34.6041859,
-      -58.3886622
+      -34.6045,
+      -58.4109
+    ]
+  },
+  {
+    "nombre": "CATHERINE BOUSELIER",
+    "dni": "42089646",
+    "ubicacion": "",
+    "comuna": "",
+    "judicial": "",
+    "estado": "SEGUIMIENTO",
+    "informe": "",
+    "coords": [
+      -34.599461913961306,
+      -58.366036196969
     ]
   },
   {
@@ -1321,8 +1386,8 @@ const personas = [
     "estado": "",
     "informe": "Javier Adrián Castro - Paracas 300",
     "coords": [
-      -34.618110422343385,
-      -58.39257258648547
+      -34.6511,
+      -58.4802
     ]
   },
   {
@@ -1334,8 +1399,8 @@ const personas = [
     "estado": "SEGUIMIENTO",
     "informe": "Zacarías Ramón Carmelo - Av San Juan 3100",
     "coords": [
-      -34.6246755,
-      -58.4086898
+      -34.6264,
+      -58.3941
     ]
   }
 ];

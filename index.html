@@ -1,33 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa de Seguimiento GOPA - Final</title>
-    
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-    
+
     <style>
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #2c3e50; }
-        #map { height: 100vh; width: 100%; background: #fff; }
-        .info-card { width: 280px; padding: 5px; }
-        .info-card h2 { margin: 0 0 10px 0; font-size: 16px; color: #2c3e50; border-bottom: 2px solid #3498db; }
-        .info-card table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-        .info-card th { text-align: left; font-size: 11px; color: #7f8c8d; padding: 4px 0; border-bottom: 1px solid #eee; }
-        .info-card td { font-size: 12px; padding: 4px 0; border-bottom: 1px solid #eee; font-weight: 500; }
-        .badge { padding: 2px 5px; border-radius: 3px; color: white; font-size: 10px; text-transform: uppercase; }
-        .bg-judicial { background-color: #e74c3c; }
-        .bg-salud { background-color: #27ae60; }
-        .bg-estado { background-color: #f39c12; }
-        .bg-default { background-color: #95a5a6; }
-        .header-panel { position: absolute; top: 10px; left: 50px; z-index: 1000; background: rgba(255,255,255,0.95); padding: 10px 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px; }
-        .stat { font-size: 13px; font-weight: bold; color: #34495e; }
-        .btn-toggle { background: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; }
-        .btn-informe { display: block; text-align: center; background: #3498db; color: white; text-decoration: none; padding: 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-top: 10px; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #2c3e50;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+        }
+
+        .info-card {
+            width: 280px;
+            padding: 5px;
+        }
+
+        .info-card h2 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .info-card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .info-card th {
+            text-align: left;
+            font-size: 11px;
+            color: #7f8c8d;
+            padding: 4px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-card td {
+            font-size: 12px;
+            padding: 4px 0;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+        }
+
+        .badge {
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: white;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .bg-judicial {
+            background-color: #e74c3c;
+        }
+
+        .bg-salud {
+            background-color: #27ae60;
+        }
+
+        .bg-estado {
+            background-color: #f39c12;
+        }
+
+        .bg-default {
+            background-color: #95a5a6;
+        }
+
+        .header-panel {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat {
+            font-size: 13px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .btn-toggle {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .btn-informe {
+            display: block;
+            text-align: center;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="header-panel">
@@ -56,14 +155,14 @@
         const markersLayer = L.layerGroup().addTo(map);
         let poly;
 
-        function getCol(e) { return e==='RESUELTO'?'bg-salud':(e==='SEGUIMIENTO'?'bg-estado':'bg-default'); }
-        function getJud(s) { return (s && s.toLowerCase().includes('judic'))?'bg-judicial':'bg-default'; }
+        function getCol(e) { return e === 'RESUELTO' ? 'bg-salud' : (e === 'SEGUIMIENTO' ? 'bg-estado' : 'bg-default'); }
+        function getJud(s) { return (s && s.toLowerCase().includes('judic')) ? 'bg-judicial' : 'bg-default'; }
 
         function render(data) {
             markersLayer.clearLayers();
             let routeCoords = [];
             let jCount = 0;
-            
+
             // Mapa para rastrear coordenadas usadas y evitar superposiciones exactas
             const usedCoords = {};
 
@@ -90,8 +189,8 @@
                     usedCoords[coordKey] = 1;
                 }
 
-                if(p.judicial && p.judicial.toLowerCase().includes('judic')) jCount++;
-                
+                if (p.judicial && p.judicial.toLowerCase().includes('judic')) jCount++;
+
                 let btnWord = (p.informe && p.informe.length > 2) ? `<a href="#" class="btn-informe" onclick="alert('Expediente: ${p.informe}'); return false;">📄 VER EXPEDIENTE</a>` : '';
 
                 L.marker(c).bindPopup(`
@@ -108,50 +207,53 @@
                 `).addTo(markersLayer);
                 routeCoords.push(c);
             });
-            
+
             document.getElementById('total-casos').innerText = data.length;
             document.getElementById('total-judicial').innerText = jCount;
-            if(poly) map.removeLayer(poly);
-            poly = L.polyline(routeCoords, {color:'#3498db', weight:2, opacity:0.4, dashArray:'5,10'}).addTo(map);
+            if (poly) map.removeLayer(poly);
+            poly = L.polyline(routeCoords, { color: '#3498db', weight: 2, opacity: 0.4, dashArray: '5,10' }).addTo(map);
         }
 
         async function syncDrive() {
             try {
                 const r = await fetch(CSV_URL);
                 const t = await r.text();
-                Papa.parse(t, {header:true, skipEmptyLines:true, complete: (res) => {
-                    const mapped = res.data.map(row => {
-                        let ap = (row['APELLIDO']||'').trim();
-                        let nom = (row['NOMBRE']||'').trim();
-                        let cleanNom = (nom + ' ' + ap).replace(/\([^)]*\)/g, '').trim();
-                        let d = (row['UBICACIÓN ÚLTIMO CONTACTO']||'S/D').trim();
-                        if (d.includes('-')) d = d.split('-').pop().trim();
-                        if (d.includes('/')) d = d.split('/').pop().trim();
-                        
-                        return {
-                            nombre: cleanNom,
-                            dni: (row['DNI']||'S/D').trim(),
-                            ubicacion: d,
-                            estado: (row['ESTADO']||'S/D').trim(),
-                            judicial: (row['SITUACIÓN JUDICIAL']||'S/D').trim(),
-                            informe: (row['INFORME']||'').trim()
-                        };
-                    }).filter(x => x.nombre.length > 3);
-                    render(mapped);
-                }});
-            } catch(e) { console.error("Error sincronizando"); }
+                Papa.parse(t, {
+                    header: true, skipEmptyLines: true, complete: (res) => {
+                        const mapped = res.data.map(row => {
+                            let ap = (row['APELLIDO'] || '').trim();
+                            let nom = (row['NOMBRE'] || '').trim();
+                            let cleanNom = (nom + ' ' + ap).replace(/\([^)]*\)/g, '').trim();
+                            let d = (row['UBICACIÓN ÚLTIMO CONTACTO'] || 'S/D').trim();
+                            if (d.includes('-')) d = d.split('-').pop().trim();
+                            if (d.includes('/')) d = d.split('/').pop().trim();
+
+                            return {
+                                nombre: cleanNom,
+                                dni: (row['DNI'] || 'S/D').trim(),
+                                ubicacion: d,
+                                estado: (row['ESTADO'] || 'S/D').trim(),
+                                judicial: (row['SITUACIÓN JUDICIAL'] || 'S/D').trim(),
+                                informe: (row['INFORME'] || '').trim()
+                            };
+                        }).filter(x => x.nombre.length > 3);
+                        render(mapped);
+                    }
+                });
+            } catch (e) { console.error("Error sincronizando"); }
         }
 
         document.getElementById('toggle-route').onclick = () => {
-            if(map.hasLayer(poly)) { map.removeLayer(poly); document.getElementById('toggle-route').innerText="MOSTRAR RECORRIDO"; }
-            else { map.addLayer(poly); document.getElementById('toggle-route').innerText="OCULTAR RECORRIDO"; }
+            if (map.hasLayer(poly)) { map.removeLayer(poly); document.getElementById('toggle-route').innerText = "MOSTRAR RECORRIDO"; }
+            else { map.addLayer(poly); document.getElementById('toggle-route').innerText = "OCULTAR RECORRIDO"; }
         };
 
         if (typeof personas !== 'undefined') {
             render(personas);
         }
 
-        if(window.location.protocol !== 'file:') syncDrive();
+        if (window.location.protocol !== 'file:') syncDrive();
     </script>
 </body>
+
 </html>
