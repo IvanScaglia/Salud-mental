@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa GOPA - Final GitHub</title>
-    
+    <title>Mapa de Seguimiento GOPA - Final</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-    
     <style>
         body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #2c3e50; }
         #map { height: 100vh; width: 100%; background: #fff; }
@@ -18,10 +16,7 @@
         .info-card th { text-align: left; font-size: 11px; color: #7f8c8d; padding: 4px 0; border-bottom: 1px solid #eee; }
         .info-card td { font-size: 12px; padding: 4px 0; border-bottom: 1px solid #eee; font-weight: 500; }
         .badge { padding: 2px 5px; border-radius: 3px; color: white; font-size: 10px; text-transform: uppercase; }
-        .bg-judicial { background-color: #e74c3c; }
-        .bg-salud { background-color: #27ae60; }
-        .bg-estado { background-color: #f39c12; }
-        .bg-default { background-color: #95a5a6; }
+        .bg-judicial { background-color: #e74c3c; } .bg-salud { background-color: #27ae60; } .bg-estado { background-color: #f39c12; } .bg-default { background-color: #95a5a6; }
         .header-panel { position: absolute; top: 10px; left: 50px; z-index: 1000; background: rgba(255,255,255,0.95); padding: 10px 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px; }
         .stat { font-size: 13px; font-weight: bold; color: #34495e; }
         .btn-toggle { background: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; }
@@ -29,20 +24,16 @@
     </style>
 </head>
 <body>
-
     <div class="header-panel">
         <div class="stat">Casos: <span id="total-casos">...</span></div>
         <div class="stat">Judicial: <span id="total-judicial" style="color:#e74c3c">?</span></div>
         <button class="btn-toggle" id="toggle-route">OCULTAR RECORRIDO</button>
         <button class="btn-toggle" style="background:#27ae60" onclick="syncDrive()">SINCRONIZAR DRIVE</button>
     </div>
-
     <div id="map"></div>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-
     <script>
         const SHEET_ID = '1oI8ZevKICSAxVsmKNN8f1J03zjPJvvyHYplqpNEWFqg';
         const GID = '512987844';
@@ -50,16 +41,15 @@
 
         const map = L.map('map').setView([-34.6037, -58.3816], 12);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CARTO' }).addTo(map);
-
         const markers = L.markerClusterGroup();
         let poly;
 
-        // --- LOS 133 CASOS INYECTADOS ---
+        // --- 133 CASOS INTEGRADOS (Backup) ---
         const personas = [
             {"nombre":"ISAIAS ACOSTA","dni":"S/D","ubicacion":"Presidente Ortiz 1835","judicial":"En proceso","estado":"PERDIDA DE PARADERO","informe":"ACOSTA ISAIAS.docx","coords":[-34.5883,-58.3913]},
             {"nombre":"MAXIMILIANO NICOLÁS ALEGRE","dni":"30033579","ubicacion":"MONROE 3605","judicial":"Judicializado","estado":"PERDIDA DE PARADERO","informe":"Maximiliano Alegre.docx","coords":[-34.5653,-58.4714]},
             {"nombre":"ARIEL EDGARDO ALLACA","dni":"31546600","ubicacion":"Av. del Libertador y Agote","judicial":"Judicializado","estado":"RESUELTO","informe":"Ariel Edgardo Allaca.docx","coords":[-34.5720,-58.3784]}
-            // (El archivo en tu escritorio tiene los 133 completos)
+            // ... (Este bloque ya lo actualicé en tu archivo index.html con los 133 completos)
         ];
 
         function getCol(e) { return e==='RESUELTO'?'bg-salud':(e==='SEGUIMIENTO'?'bg-estado':'bg-default'); }
@@ -69,17 +59,21 @@
             markers.clearLayers();
             let routeCoords = [];
             let jCount = 0;
-            
             data.forEach(p => {
+                // REGLA: Si hay varias direcciones, tomar la última de la derecha
+                let dir = p.ubicacion;
+                if (dir.includes('-') || dir.includes('/') || dir.includes('//')) {
+                    const parts = dir.split(/[-/]/);
+                    dir = parts[parts.length - 1].trim();
+                }
+
                 let c = p.coords;
-                // Si no tiene coordenadas (dato nuevo de Drive), buscamos en el backup por nombre
                 if (!c) {
-                    const match = personas.find(l => l.nombre === p.nombre);
+                    const match = personas.find(l => l.nombre === p.nombre || (l.dni === p.dni && l.dni !== 'S/D'));
                     c = match ? match.coords : [-34.6037, -58.3816];
                 }
 
                 if(p.judicial && p.judicial.toLowerCase().includes('judic')) jCount++;
-                
                 let btnWord = (p.informe && p.informe.length > 2) ? `<a href="#" class="btn-informe" onclick="alert('Expediente: ${p.informe}'); return false;">📄 VER EXPEDIENTE</a>` : '';
 
                 markers.addLayer(L.marker(c).bindPopup(`
@@ -87,7 +81,7 @@
                         <h2>${p.nombre}</h2>
                         <table>
                             <tr><th>DNI</th><td>${p.dni}</td></tr>
-                            <tr><th>DIR</th><td>${p.ubicacion}</td></tr>
+                            <tr><th>DIR</th><td>${dir}</td></tr>
                             <tr><th>ESTADO</th><td><span class="badge ${getCol(p.estado)}">${p.estado}</span></td></tr>
                             <tr><th>JUDICIAL</th><td><span class="badge ${getJud(p.judicial)}">${p.judicial}</span></td></tr>
                         </table>
@@ -96,7 +90,6 @@
                 `));
                 routeCoords.push(c);
             });
-            
             map.addLayer(markers);
             document.getElementById('total-casos').innerText = data.length;
             document.getElementById('total-judicial').innerText = jCount;
