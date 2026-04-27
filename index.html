@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa de Seguimiento GOPA - Final</title>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    
     <style>
         body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #2c3e50; }
         #map { height: 100vh; width: 100%; background: #fff; }
         .info-card { width: 280px; padding: 5px; }
         .info-card h2 { margin: 0 0 10px 0; font-size: 16px; color: #2c3e50; border-bottom: 2px solid #3498db; }
-        .info-card table { width: 100%; border-collapse: collapse; }
+        .info-card table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
         .info-card th { text-align: left; font-size: 11px; color: #7f8c8d; padding: 4px 0; border-bottom: 1px solid #eee; }
         .info-card td { font-size: 12px; padding: 4px 0; border-bottom: 1px solid #eee; font-weight: 500; }
         .badge { padding: 2px 5px; border-radius: 3px; color: white; font-size: 10px; text-transform: uppercase; }
-        .bg-judicial { background-color: #e74c3c; } .bg-salud { background-color: #27ae60; } .bg-estado { background-color: #f39c12; } .bg-default { background-color: #95a5a6; }
+        .bg-judicial { background-color: #e74c3c; }
+        .bg-salud { background-color: #27ae60; }
+        .bg-estado { background-color: #f39c12; }
+        .bg-default { background-color: #95a5a6; }
         .header-panel { position: absolute; top: 10px; left: 50px; z-index: 1000; background: rgba(255,255,255,0.95); padding: 10px 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px; }
         .stat { font-size: 13px; font-weight: bold; color: #34495e; }
         .btn-toggle { background: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; }
@@ -24,16 +29,22 @@
     </style>
 </head>
 <body>
+
     <div class="header-panel">
         <div class="stat">Casos: <span id="total-casos">...</span></div>
         <div class="stat">Judicial: <span id="total-judicial" style="color:#e74c3c">?</span></div>
         <button class="btn-toggle" id="toggle-route">OCULTAR RECORRIDO</button>
-        <button class="btn-toggle" style="background:#27ae60" onclick="syncDrive()">SINCRONIZAR DRIVE</button>
+        <button class="btn-toggle" style="background:#27ae60" onclick="syncDrive()">Sincronizar Drive</button>
     </div>
+
     <div id="map"></div>
+
+    <!-- CARGAMOS LOS DATOS DESDE EL ARCHIVO SEPARADO -->
+    <script src="datos.js"></script>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
     <script>
         const SHEET_ID = '1oI8ZevKICSAxVsmKNN8f1J03zjPJvvyHYplqpNEWFqg';
         const GID = '512987844';
@@ -41,26 +52,22 @@
 
         const map = L.map('map').setView([-34.6037, -58.3816], 12);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CARTO' }).addTo(map);
-        const markers = L.markerClusterGroup();
-        let poly;
 
-        // --- 133 CASOS INTEGRADOS (Backup) ---
-        const personas = [
-            {"nombre":"ISAIAS ACOSTA","dni":"S/D","ubicacion":"Presidente Ortiz 1835","judicial":"En proceso","estado":"PERDIDA DE PARADERO","informe":"ACOSTA ISAIAS.docx","coords":[-34.5883,-58.3913]},
-            {"nombre":"MAXIMILIANO NICOLÁS ALEGRE","dni":"30033579","ubicacion":"MONROE 3605","judicial":"Judicializado","estado":"PERDIDA DE PARADERO","informe":"Maximiliano Alegre.docx","coords":[-34.5653,-58.4714]},
-            {"nombre":"ARIEL EDGARDO ALLACA","dni":"31546600","ubicacion":"Av. del Libertador y Agote","judicial":"Judicializado","estado":"RESUELTO","informe":"Ariel Edgardo Allaca.docx","coords":[-34.5720,-58.3784]}
-            // ... (Este bloque ya lo actualicé en tu archivo index.html con los 133 completos)
-        ];
+        const markersLayer = L.layerGroup().addTo(map);
+        let poly;
 
         function getCol(e) { return e==='RESUELTO'?'bg-salud':(e==='SEGUIMIENTO'?'bg-estado':'bg-default'); }
         function getJud(s) { return (s && s.toLowerCase().includes('judic'))?'bg-judicial':'bg-default'; }
 
         function render(data) {
-            markers.clearLayers();
+            markersLayer.clearLayers();
             let routeCoords = [];
             let jCount = 0;
+            
+            // Mapa para rastrear coordenadas usadas y evitar superposiciones exactas
+            const usedCoords = {};
+
             data.forEach(p => {
-                // REGLA: Si hay varias direcciones, tomar la última de la derecha
                 let dir = p.ubicacion;
                 if (dir.includes('-') || dir.includes('/') || dir.includes('//')) {
                     const parts = dir.split(/[-/]/);
@@ -69,16 +76,27 @@
 
                 let c = p.coords;
                 if (!c) {
-                    const match = personas.find(l => l.nombre === p.nombre || (l.dni === p.dni && l.dni !== 'S/D'));
+                    const match = (typeof personas !== 'undefined') ? personas.find(l => l.nombre === p.nombre) : null;
                     c = match ? match.coords : [-34.6037, -58.3816];
                 }
 
+                // Jitter: Si la coordenada ya se usó, la movemos un poquitito
+                const coordKey = c[0].toFixed(5) + ',' + c[1].toFixed(5);
+                if (usedCoords[coordKey]) {
+                    usedCoords[coordKey]++;
+                    const offset = usedCoords[coordKey] * 0.0001; // Unos metros de diferencia
+                    c = [c[0] + offset, c[1] + offset];
+                } else {
+                    usedCoords[coordKey] = 1;
+                }
+
                 if(p.judicial && p.judicial.toLowerCase().includes('judic')) jCount++;
+                
                 let btnWord = (p.informe && p.informe.length > 2) ? `<a href="#" class="btn-informe" onclick="alert('Expediente: ${p.informe}'); return false;">📄 VER EXPEDIENTE</a>` : '';
 
-                markers.addLayer(L.marker(c).bindPopup(`
+                L.marker(c).bindPopup(`
                     <div class="info-card">
-                        <h2>${p.nombre}</h2>
+                        <h2 style="text-transform: uppercase;">${p.nombre}</h2>
                         <table>
                             <tr><th>DNI</th><td>${p.dni}</td></tr>
                             <tr><th>DIR</th><td>${dir}</td></tr>
@@ -87,10 +105,10 @@
                         </table>
                         ${btnWord}
                     </div>
-                `));
+                `).addTo(markersLayer);
                 routeCoords.push(c);
             });
-            map.addLayer(markers);
+            
             document.getElementById('total-casos').innerText = data.length;
             document.getElementById('total-judicial').innerText = jCount;
             if(poly) map.removeLayer(poly);
@@ -102,14 +120,23 @@
                 const r = await fetch(CSV_URL);
                 const t = await r.text();
                 Papa.parse(t, {header:true, skipEmptyLines:true, complete: (res) => {
-                    const mapped = res.data.map(row => ({
-                        nombre: `${row['APELLIDO']||''} ${row['NOMBRE']||''}`.trim(),
-                        dni: (row['DNI']||'S/D').trim(),
-                        ubicacion: (row['UBICACIÓN ÚLTIMO CONTACTO']||'S/D').trim(),
-                        estado: (row['ESTADO']||'S/D').trim(),
-                        judicial: (row['SITUACIÓN JUDICIAL']||'S/D').trim(),
-                        informe: (row['INFORME']||'').trim()
-                    })).filter(x => x.nombre.length > 2);
+                    const mapped = res.data.map(row => {
+                        let ap = (row['APELLIDO']||'').trim();
+                        let nom = (row['NOMBRE']||'').trim();
+                        let cleanNom = (nom + ' ' + ap).replace(/\([^)]*\)/g, '').trim();
+                        let d = (row['UBICACIÓN ÚLTIMO CONTACTO']||'S/D').trim();
+                        if (d.includes('-')) d = d.split('-').pop().trim();
+                        if (d.includes('/')) d = d.split('/').pop().trim();
+                        
+                        return {
+                            nombre: cleanNom,
+                            dni: (row['DNI']||'S/D').trim(),
+                            ubicacion: d,
+                            estado: (row['ESTADO']||'S/D').trim(),
+                            judicial: (row['SITUACIÓN JUDICIAL']||'S/D').trim(),
+                            informe: (row['INFORME']||'').trim()
+                        };
+                    }).filter(x => x.nombre.length > 3);
                     render(mapped);
                 }});
             } catch(e) { console.error("Error sincronizando"); }
@@ -120,7 +147,10 @@
             else { map.addLayer(poly); document.getElementById('toggle-route').innerText="OCULTAR RECORRIDO"; }
         };
 
-        render(personas);
+        if (typeof personas !== 'undefined') {
+            render(personas);
+        }
+
         if(window.location.protocol !== 'file:') syncDrive();
     </script>
 </body>
